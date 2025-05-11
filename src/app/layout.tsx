@@ -76,7 +76,7 @@ export default function RootLayout({
             </div>
             <div className="md:col-span-1 flex flex-row items-stretch h-full">
               <div className="flex items-center md:items-start justify-center md:justify-start h-full">
-                <img src="/traditio_logo.png" alt="Traditio Logo" className="h-full max-h-32 w-auto object-contain mr-4" style={{minHeight: '96px'}} />
+                <img src="/traditio_logo.png" alt="Traditio Logo" className="h-full max-h-40 w-auto object-contain" style={{minHeight: '120px', paddingRight: '50px'}} />
               </div>
               <div className="flex flex-col justify-center md:justify-start">
                 <h3 className="font-heading text-lg uppercase tracking-wider mb-2">Legal</h3>

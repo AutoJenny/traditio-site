@@ -31,15 +31,6 @@ export default function Home() {
           </div>
         ))}
       </section>
-      {/* Newsletter Signup */}
-      <section className="w-full max-w-md mx-auto mb-24 text-center">
-        <h3 className="font-heading text-2xl mb-4 uppercase tracking-wider">Newsletter</h3>
-        <form className="flex flex-col sm:flex-row gap-2 justify-center items-center">
-          <input type="email" placeholder="Your email" className="border border-sand rounded px-4 py-2 w-full sm:w-auto" aria-label="Email address" />
-          <button type="submit" className="bg-sand text-espresso font-bold rounded px-6 py-2 border-2 border-brass transition-colors duration-200 hover:bg-espresso hover:text-ivory">Subscribe</button>
-        </form>
-        <span className="text-xs text-sand mt-1 block">We respect your privacy.</span>
-      </section>
     </main>
   );
 }

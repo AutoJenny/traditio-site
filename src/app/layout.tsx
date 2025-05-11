@@ -57,8 +57,8 @@ export default function RootLayout({
         {/* Main Content */}
         {children}
         {/* Footer */}
-        <footer className="bg-ivory border-t border-sand mt-16 py-12 text-sm">
-          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <footer className="bg-ivory border-t border-sand mt-16 py-12 text-sm relative">
+          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             <div>
               <h3 className="font-heading text-lg mb-2 uppercase tracking-wider">Contact</h3>
               <p>Traditio Interiors<br/>123 High Street<br/>Edinburgh, Scotland EH1 1AA</p>
@@ -74,22 +74,18 @@ export default function RootLayout({
                 <span className="text-xs text-sand mt-1">We respect your privacy.</span>
               </form>
             </div>
-            <div className="md:col-span-1 flex flex-row items-stretch h-full">
-              <div className="flex items-center md:items-start justify-center md:justify-start h-full">
-                <img src="/traditio_logo.png" alt="Traditio Logo" className="h-full max-h-80 w-auto object-contain" style={{minHeight: '240px', marginLeft: '100px', paddingRight: '50px', alignSelf: 'flex-start'}} />
-              </div>
-              <div className="flex flex-col justify-center md:justify-start">
-                <h3 className="font-heading text-lg uppercase tracking-wider mb-2">Legal</h3>
-                <ul className="flex flex-col gap-1">
-                  <li><a href="/delivery" className="hover:underline">Delivery</a></li>
-                  <li><a href="/contact" className="hover:underline">Contact</a></li>
-                  <li><a href="/returns" className="hover:underline">Returns</a></li>
-                  <li><a href="/privacy" className="hover:underline">Privacy</a></li>
-                  <li><a href="/reviews" className="hover:underline">Reviews</a></li>
-                </ul>
-                <p className="mt-4 text-xs text-sand">&copy; {new Date().getFullYear()} Traditio Interiors. All rights reserved.</p>
-              </div>
+            <div>
+              <h3 className="font-heading text-lg mb-2 uppercase tracking-wider">Legal</h3>
+              <ul className="flex flex-col gap-1">
+                <li><a href="/delivery" className="hover:underline">Delivery</a></li>
+                <li><a href="/contact" className="hover:underline">Contact</a></li>
+                <li><a href="/returns" className="hover:underline">Returns</a></li>
+                <li><a href="/privacy" className="hover:underline">Privacy</a></li>
+                <li><a href="/reviews" className="hover:underline">Reviews</a></li>
+              </ul>
+              <p className="mt-4 text-xs text-sand">&copy; {new Date().getFullYear()} Traditio Interiors. All rights reserved.</p>
             </div>
+            <img src="/traditio_logo.png" alt="Traditio Logo" className="hidden md:block absolute right-0 top-0 h-40 w-auto object-contain" style={{marginTop: '0px'}} />
           </div>
         </footer>
       </body>

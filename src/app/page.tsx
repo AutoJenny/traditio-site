@@ -11,7 +11,7 @@ export default function Home() {
           </p>
           {/* Logo placeholder if missing */}
           <div className="flex justify-center items-center h-24 w-24 mx-auto mt-6 bg-sand rounded-full">
-            <span className="text-2xl text-espresso font-heading">T</span>
+            <Image src="/traditio_logo.png" alt="Traditio Logo" width={96} height={96} className="object-contain" />
           </div>
         </section>
         <div className="flex flex-col md:flex-row gap-8 justify-center items-start">

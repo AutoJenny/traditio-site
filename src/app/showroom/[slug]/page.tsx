@@ -1,26 +1,58 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+
 export default function ProductDetail() {
+  const { slug } = useParams();
+  const [product, setProduct] = useState<any>(null);
+  const [related, setRelated] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      const res = await fetch(`/api/products?slug=${slug}`);
+      const data = await res.json();
+      setProduct(data.product);
+      setRelated(data.related || []);
+      setLoading(false);
+    }
+    fetchProduct();
+  }, [slug]);
+
+  if (loading) return <div className="text-center py-16">Loading...</div>;
+  if (!product) return <div className="text-center py-16">Product not found.</div>;
+
   return (
     <main className="max-w-3xl mx-auto py-16 px-4">
       {/* Image Gallery */}
       <section className="flex flex-col md:flex-row gap-8 mb-8">
         <div className="flex-1 flex flex-col items-center">
-          <div className="w-full h-80 bg-sand rounded mb-4 flex items-center justify-center">
-            <span className="text-6xl text-espresso">🪑</span>
+          <div className="w-full h-80 bg-sand rounded mb-4 flex items-center justify-center overflow-hidden">
+            {product.images && product.images[0] ? (
+              <img src={product.images[0].url} alt={product.images[0].alt || product.title} className="object-contain h-full max-h-80 w-auto mx-auto" />
+            ) : (
+              <span className="text-6xl text-espresso">🪑</span>
+            )}
           </div>
           <div className="flex gap-2 justify-center">
-            {[1,2,3].map(i => (
-              <div key={i} className="w-16 h-16 bg-ivory rounded flex items-center justify-center border border-sand">
-                <span className="text-2xl text-sand">🪑</span>
+            {product.images && product.images.map((img: any, i: number) => (
+              <div key={i} className="w-16 h-16 bg-ivory rounded flex items-center justify-center border border-sand overflow-hidden">
+                <img src={img.url} alt={img.alt || product.title} className="object-contain h-full w-auto mx-auto" />
               </div>
             ))}
           </div>
         </div>
         {/* Product Info */}
         <div className="flex-1 flex flex-col justify-center">
-          <h1 className="font-heading text-3xl md:text-4xl font-bold uppercase text-espresso mb-2">Product Title</h1>
-          <p className="font-body text-lg text-brass font-bold mb-2">£1,200</p>
-          <span className="inline-block bg-brass text-white text-xs rounded px-2 py-0.5 uppercase font-bold mb-4">SOLD</span>
-          <p className="font-body text-base text-sand mb-4">This is a boilerplate product description. Add details, dimensions, condition, and origin here when ready.</p>
+          <h1 className="font-heading text-3xl md:text-4xl font-bold uppercase text-espresso mb-2">{product.title}</h1>
+          <p className="font-body text-lg text-brass font-bold mb-2">£{product.price}</p>
+          {product.status === 'sold' && <span className="inline-block bg-red-400 text-white text-xs rounded px-2 py-0.5 uppercase font-bold mb-4">SOLD</span>}
+          <p className="font-body text-base text-sand mb-4">{product.description}</p>
+          <ul className="text-sm text-sand mb-4">
+            {product.dimensions && <li><b>Dimensions:</b> {product.dimensions}</li>}
+            {product.condition && <li><b>Condition:</b> {product.condition}</li>}
+            {product.origin && <li><b>Origin:</b> {product.origin}</li>}
+            {product.period && <li><b>Period:</b> {product.period}</li>}
+          </ul>
           {/* Expandable Delivery Info */}
           <details className="mb-4">
             <summary className="cursor-pointer font-bold text-espresso">Delivery Information</summary>
@@ -39,13 +71,17 @@ export default function ProductDetail() {
       <section className="mt-12">
         <h2 className="font-heading text-2xl mb-6 text-espresso">Related Products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {[1,2,3].map(i => (
-            <div key={i} className="bg-sand rounded-card shadow-card p-4 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-lg">
-              <div className="w-full h-32 bg-ivory rounded mb-4 flex items-center justify-center">
-                <span className="text-2xl text-sand">🪑</span>
+          {related.map((prod: any) => (
+            <div key={prod.id} className="bg-sand rounded-card shadow-card p-4 flex flex-col items-center transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+              <div className="w-full h-32 bg-ivory rounded mb-4 flex items-center justify-center overflow-hidden">
+                {prod.images && prod.images[0] ? (
+                  <img src={prod.images[0].url} alt={prod.images[0].alt || prod.title} className="object-contain h-full max-h-32 w-auto mx-auto" />
+                ) : (
+                  <span className="text-2xl text-sand">🪑</span>
+                )}
               </div>
-              <h3 className="font-heading text-lg text-espresso mb-1">Product {i}</h3>
-              <p className="font-body text-brass font-bold mb-2">£900</p>
+              <h3 className="font-heading text-lg text-espresso mb-1">{prod.title}</h3>
+              <p className="font-body text-brass font-bold mb-2">£{prod.price}</p>
             </div>
           ))}
         </div>

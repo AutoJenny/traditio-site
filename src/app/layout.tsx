@@ -75,7 +75,10 @@ export default function RootLayout({
               </form>
             </div>
             <div>
-              <h3 className="font-heading text-lg mb-2 uppercase tracking-wider">Legal</h3>
+              <div className="flex items-center justify-center mb-4">
+                <img src="/traditio_logo.png" alt="Traditio Logo" className="h-16 w-16 object-contain mr-3" />
+                <h3 className="font-heading text-lg uppercase tracking-wider mb-0">Legal</h3>
+              </div>
               <ul className="flex flex-col gap-1">
                 <li><a href="/delivery" className="hover:underline">Delivery</a></li>
                 <li><a href="/contact" className="hover:underline">Contact</a></li>

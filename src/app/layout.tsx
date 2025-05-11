@@ -74,19 +74,21 @@ export default function RootLayout({
                 <span className="text-xs text-sand mt-1">We respect your privacy.</span>
               </form>
             </div>
-            <div>
-              <div className="flex items-center justify-center mb-4">
-                <img src="/traditio_logo.png" alt="Traditio Logo" className="h-16 w-16 object-contain mr-3" />
-                <h3 className="font-heading text-lg uppercase tracking-wider mb-0">Legal</h3>
+            <div className="md:col-span-1 flex flex-row items-stretch h-full">
+              <div className="flex items-center md:items-start justify-center md:justify-start h-full">
+                <img src="/traditio_logo.png" alt="Traditio Logo" className="h-full max-h-32 w-auto object-contain mr-4" style={{minHeight: '96px'}} />
               </div>
-              <ul className="flex flex-col gap-1">
-                <li><a href="/delivery" className="hover:underline">Delivery</a></li>
-                <li><a href="/contact" className="hover:underline">Contact</a></li>
-                <li><a href="/returns" className="hover:underline">Returns</a></li>
-                <li><a href="/privacy" className="hover:underline">Privacy</a></li>
-                <li><a href="/reviews" className="hover:underline">Reviews</a></li>
-              </ul>
-              <p className="mt-4 text-xs text-sand">&copy; {new Date().getFullYear()} Traditio Interiors. All rights reserved.</p>
+              <div className="flex flex-col justify-center md:justify-start">
+                <h3 className="font-heading text-lg uppercase tracking-wider mb-2">Legal</h3>
+                <ul className="flex flex-col gap-1">
+                  <li><a href="/delivery" className="hover:underline">Delivery</a></li>
+                  <li><a href="/contact" className="hover:underline">Contact</a></li>
+                  <li><a href="/returns" className="hover:underline">Returns</a></li>
+                  <li><a href="/privacy" className="hover:underline">Privacy</a></li>
+                  <li><a href="/reviews" className="hover:underline">Reviews</a></li>
+                </ul>
+                <p className="mt-4 text-xs text-sand">&copy; {new Date().getFullYear()} Traditio Interiors. All rights reserved.</p>
+              </div>
             </div>
           </div>
         </footer>
